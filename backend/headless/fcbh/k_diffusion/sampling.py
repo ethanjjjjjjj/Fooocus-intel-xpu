@@ -68,10 +68,8 @@ class BatchedBrownianTree:
         self.cpu_tree = True
         if "cpu" in kwargs:
             self.cpu_tree = kwargs.pop("cpu")
-        global xpu_available
         if torch.xpu.is_available():
             self.cpu_tree=True
-        
         t0, t1, self.sign = self.sort(t0, t1)
         w0 = kwargs.get('w0', torch.zeros_like(x))
         if seed is None:
